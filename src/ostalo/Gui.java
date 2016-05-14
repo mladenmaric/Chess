@@ -1,21 +1,23 @@
+package ostalo;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import figure.Figurica;
 
 public class Gui extends JFrame
 {
 	private static final long serialVersionUID = 1L;
 	private Engine engine = new Engine();
 	private MyButton[][] polja; 
-
+	private boolean prviPutKliknuto = false;
+	private MyButton aktivnoDugme = null;
+	
 	public Gui()
 	{
 		initialize();
@@ -40,11 +42,6 @@ public class Gui extends JFrame
 				polja[i][j] = new MyButton(i, j);
 				polja[i][j].setPreferredSize(new Dimension(80, 80));
 				
-				if ((i + j) % 2 == 0)
-					polja[i][j].setBackground(Color.GRAY);
-				else
-					polja[i][j].setBackground(Color.WHITE);
-				
 				centar.add(polja[i][j]);
 			}
 		
@@ -59,36 +56,49 @@ public class Gui extends JFrame
 		pack();
 	}
 
-	private void refreshGui()
+	public void refreshGui()
 	{
 		for (int i = 0; i < 8; i++)
 			for (int j = 0; j < 8; j++)
-				if (engine.getTablaIJ(i, j).getFigura() != Figurica.NEPOZNATO)
+			{
+				if (engine.getTablaIJ(i, j).getFigurica() != Figurica.NEPOZNATO)
 					polja[i][j].setIcon(new ImageIcon(getClass().getResource("images/" + engine.getTablaIJ(i, j).getBoja().toString() + 
-							"_" + engine.getTablaIJ(i, j).getFigura().toString() + ".png")));		
+							"_" + engine.getTablaIJ(i, j).getFigurica().toString() + ".png")));	
+				else
+					polja[i][j].setIcon(null);
+				
+				if ((i + j) % 2 == 0)
+					polja[i][j].setBackground(Color.GRAY);
+				else
+					polja[i][j].setBackground(Color.WHITE);
+			}
 	}
 
 	private void addListeners()
 	{
 		for (int i = 0; i < 8; i++)
 			for (int j = 0; j < 8; j++)
-			{
-				polja[i][j].addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e)
-					{
-						MyButton polje = (MyButton)e.getSource();
-						
-						if (engine.getTablaIJ(polje.getI(), polje.getJ()).getFigura() == Figurica.NEPOZNATO)
-							JOptionPane.showMessageDialog(null, "Morate kliknuti na neku figuricu!");
-						else
-						{
-							polje.setBackground(Color.ORANGE);
-						}
-						
-					}
-				});
-			}
+				polja[i][j].addActionListener(new MyButtonListener(this, engine));
+	}
+
+	public boolean isPrviPutKliknuto()
+	{
+		return prviPutKliknuto;
+	}
+
+	public void setPrviPutKliknuto(boolean prviPutKliknuto)
+	{
+		this.prviPutKliknuto = prviPutKliknuto;
+	}
+
+	public MyButton getAktivnoDugme()
+	{
+		return aktivnoDugme;
+	}
+
+	public void setAktivnoDugme(MyButton aktivnoDugme)
+	{
+		this.aktivnoDugme = aktivnoDugme;
 	}
 	
 	

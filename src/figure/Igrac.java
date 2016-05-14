@@ -1,3 +1,4 @@
+package figure;
 
 public enum Igrac
 {

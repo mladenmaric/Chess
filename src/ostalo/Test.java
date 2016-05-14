@@ -1,10 +1,11 @@
+package ostalo;
 
 public class Test
 {
 	
 	public static void main(String[] args)
 	{
-		new Gui().setVisible(true);
+		new Gui();
 	}
 	
 }
