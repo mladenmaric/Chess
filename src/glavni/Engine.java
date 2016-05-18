@@ -1,4 +1,4 @@
-package ostalo;
+package glavni;
 import figure.Figura;
 import figure.Igrac;
 import figure.Konj;

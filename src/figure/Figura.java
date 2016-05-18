@@ -1,6 +1,6 @@
 package figure;
 
-import ostalo.*;
+import glavni.*;
 
 public abstract class Figura
 {

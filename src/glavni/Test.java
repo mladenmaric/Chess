@@ -1,4 +1,4 @@
-package ostalo;
+package glavni;
 
 public class Test
 {

@@ -1,5 +1,5 @@
 package figure;
-import ostalo.Engine;
+import glavni.Engine;
 
 public class Kralj extends Figura
 {
