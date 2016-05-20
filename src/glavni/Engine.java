@@ -1,4 +1,4 @@
-package ostalo;
+package glavni;
 import figure.Figura;
 import figure.Igrac;
 import figure.Konj;
@@ -14,6 +14,10 @@ public class Engine
 {
 	private Figura[][] tabla;
 	private Igrac naPotezu;
+	private int brojOdigranihPotezaBeli;
+	private int brojOdigranihPotezaCrni;
+	private Figura[] pojedeniBeli;
+	private Figura[] pojedeniCrni;
 	
 	public Engine()
 	{
@@ -22,8 +26,13 @@ public class Engine
 	
 	public void initialize()
 	{
+		setBrojOdigranihPotezaBeli(0);
+		setBrojOdigranihPotezaBeli(0);
 		naPotezu = Igrac.BELI;
+		
 		tabla = new Figura[8][8];
+		pojedeniBeli = new Figura[8];
+		pojedeniCrni = new Figura[8];
 		
 		setStart();
 	}
@@ -83,6 +92,11 @@ public class Engine
 		return naPotezu;
 	}
 
+	public void setNaPotezu()
+	{
+		naPotezu = ((naPotezu == Igrac.BELI) ? Igrac.CRNI : Igrac.BELI);
+	}
+	
 	public Figura getTablaIJ(int i, int j)
 	{
 		return tabla[i][j];
@@ -92,4 +106,50 @@ public class Engine
 	{
 		tabla[f.getI()][f.getJ()] = f;
 	}
+
+	public int getBrojOdigranihPotezaBeli()
+	{
+		return brojOdigranihPotezaBeli;
+	}
+
+	public void setBrojOdigranihPotezaBeli(int brojOdigranihPotezaBeli)
+	{
+		this.brojOdigranihPotezaBeli = brojOdigranihPotezaBeli;
+	}
+
+	public int getBrojOdigranihPotezaCrni()
+	{
+		return brojOdigranihPotezaCrni;
+	}
+
+	public void setBrojOdigranihPotezaCrni(int brojOdigranihPotezaCrni)
+	{
+		this.brojOdigranihPotezaCrni = brojOdigranihPotezaCrni;
+	}
+
+	
+	public Figura[] getPojedeniCrni()
+	{
+		return pojedeniCrni;
+	}
+
+	
+	public void setPojedeniCrni(Figura pojedeniCrni, int index)
+	{
+		this.pojedeniCrni[index] = pojedeniCrni;
+	}
+
+	
+	public Figura[] getPojedeniBeli()
+	{
+		return pojedeniBeli;
+	}
+
+	
+	public void setPojedeniBeli(Figura pojedeniBeli, int index)
+	{
+		this.pojedeniBeli[index] = pojedeniBeli;
+	}
+	
+	
 }

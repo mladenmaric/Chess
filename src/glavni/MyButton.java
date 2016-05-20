@@ -1,4 +1,4 @@
-package ostalo;
+package glavni;
 import javax.swing.JButton;
 
 public class MyButton extends JButton

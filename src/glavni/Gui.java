@@ -1,4 +1,4 @@
-package ostalo;
+package glavni;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import figure.Figura;
 import figure.Figurica;
 
 public class Gui extends JFrame
@@ -62,7 +63,7 @@ public class Gui extends JFrame
 			for (int j = 0; j < 8; j++)
 			{
 				if (engine.getTablaIJ(i, j).getFigurica() != Figurica.NEPOZNATO)
-					polja[i][j].setIcon(new ImageIcon(getClass().getResource("images/" + engine.getTablaIJ(i, j).getBoja().toString() + 
+					polja[i][j].setIcon(new ImageIcon(getClass().getResource("/" + engine.getTablaIJ(i, j).getBoja().toString() + 
 							"_" + engine.getTablaIJ(i, j).getFigurica().toString() + ".png")));	
 				else
 					polja[i][j].setIcon(null);
@@ -101,5 +102,14 @@ public class Gui extends JFrame
 		this.aktivnoDugme = aktivnoDugme;
 	}
 	
-	
+	public void setMogucaPolja(Figura f) throws Exception
+	{
+		Figura[] tren = f.getDozvoljenaPolja();
+		
+		if (tren[0] == null) 
+			throw new Exception("Ne mozete pomeriti tog igraca!");
+		
+		for (int i = 0; i < tren.length && tren[i] != null; i++)
+			polja[tren[i].getI()][tren[i].getJ()].setBackground(Color.CYAN);
+	}
 }

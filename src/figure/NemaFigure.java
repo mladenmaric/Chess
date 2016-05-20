@@ -1,5 +1,5 @@
 package figure;
-import ostalo.Engine;
+import glavni.Engine;
 
 public class NemaFigure extends Figura
 {
@@ -8,11 +8,11 @@ public class NemaFigure extends Figura
 	{
 		super(i, j, Figurica.NEPOZNATO, Igrac.NEPOZNATO, engine);
 	}
-	
-	public boolean pomeriFiguru(int x, int y)
-	{
-		// TODO Auto-generated method stub
-		return false;
+
+	public Figura[] getDozvoljenaPolja() 
+	{ 
+		Figura[] f = new Figura[1];
+		return f;	
 	}
 
 }
