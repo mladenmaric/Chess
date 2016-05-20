@@ -124,13 +124,7 @@ public class Engine
 
 	public void setBrojOdigranihPotezaCrni(int brojOdigranihPotezaCrni)
 	{
-		this.brojOdigranihPotezaCrni = brojOdigranihPotezaCrni;
-	}
-
-	
-	public Figura[] getPojedeniCrni()
-	{
-		return pojedeniCrni;
+		this.brojOdigranihPotezaCrni = brojOdigranihPotezaCrni; 
 	}
 
 	
@@ -144,11 +138,38 @@ public class Engine
 	{
 		return pojedeniBeli;
 	}
-
 	
 	public void setPojedeniBeli(Figura pojedeniBeli, int index)
 	{
 		this.pojedeniBeli[index] = pojedeniBeli;
+	}
+	
+	public Figura dajKralja(Igrac boja)
+	{
+		for (int i = 0; i < 8; i++)
+			for (int j = 0; j < 8; j++)
+				if (tabla[i][j] instanceof Kralj && tabla[i][j].getBoja() == boja)
+					return tabla[i][j];
+		
+		return null;
+	}
+	
+	public boolean daLiJeSah()
+	{
+		Igrac zadaoSah = ((naPotezu == Igrac.BELI) ? Igrac.CRNI : Igrac.BELI);
+		Figura kralj = dajKralja(naPotezu);
+		
+		for (int i = 0; i < 8; i++)
+			for (int j = 0; j < 8; j++)
+				if (!(tabla[i][j] instanceof NemaFigure) && tabla[i][j].getBoja() == zadaoSah)
+				{
+					Figura[] dozvoljenaPolja = tabla[i][j].getDozvoljenaPolja();
+					for (int p = 0; p < dozvoljenaPolja.length && dozvoljenaPolja[i] != null; p++)
+						if (dozvoljenaPolja[i] == kralj)
+							return true;
+				}
+		
+		return false;
 	}
 	
 	

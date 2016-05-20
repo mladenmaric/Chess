@@ -21,7 +21,5 @@ public class MyButton extends JButton
 	public int getJ()
 	{
 		return j;
-	}
-	
-	
+	}	
 }

@@ -25,7 +25,7 @@ public class MyButtonListener implements ActionListener
 		MyButton b = (MyButton)e.getSource();
 		Figura tren;
 		
-		if (gui.isPrviPutKliknuto() == false)
+		if (gui.getAktivnoDugme() == null)
 		{			
 			tren = engine.getTablaIJ(b.getI(), b.getJ());
 			
@@ -40,7 +40,6 @@ public class MyButtonListener implements ActionListener
 						gui.setMogucaPolja(tren);
 						
 						b.setBackground(Color.orange);
-						gui.setPrviPutKliknuto(true);
 						gui.setAktivnoDugme(b);
 					}
 					catch (Exception e1)
@@ -59,7 +58,6 @@ public class MyButtonListener implements ActionListener
 			
 			if (b == gui.getAktivnoDugme())
 			{
-				gui.setPrviPutKliknuto(false);
 				gui.setAktivnoDugme(null);
 				gui.refreshGui();
 			}
@@ -68,11 +66,9 @@ public class MyButtonListener implements ActionListener
 				try 
 				{
 					trenFigura.pomeriFiguru(b.getI(), b.getJ());
-					
-					gui.setPrviPutKliknuto(false);
+
 					gui.setAktivnoDugme(null);
 					engine.setNaPotezu();
-					
 					gui.refreshGui();	
 				} 
 				catch (Exception e1) 

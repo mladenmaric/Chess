@@ -16,7 +16,6 @@ public class Gui extends JFrame
 	private static final long serialVersionUID = 1L;
 	private Engine engine = new Engine();
 	private MyButton[][] polja; 
-	private boolean prviPutKliknuto = false;
 	private MyButton aktivnoDugme = null;
 	
 	public Gui()
@@ -80,16 +79,6 @@ public class Gui extends JFrame
 		for (int i = 0; i < 8; i++)
 			for (int j = 0; j < 8; j++)
 				polja[i][j].addActionListener(new MyButtonListener(this, engine));
-	}
-
-	public boolean isPrviPutKliknuto()
-	{
-		return prviPutKliknuto;
-	}
-
-	public void setPrviPutKliknuto(boolean prviPutKliknuto)
-	{
-		this.prviPutKliknuto = prviPutKliknuto;
 	}
 
 	public MyButton getAktivnoDugme()
