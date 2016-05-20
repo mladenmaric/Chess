@@ -16,7 +16,7 @@ public class Lovac extends Figura
 		int i, j;
 		
 		i = getI();
-		j = getJ();
+		j = getJ(); 
 		while (i > 0 && j > 0)
 		{
 			i--;
