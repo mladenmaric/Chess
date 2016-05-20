@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import figure.Figura;
+import figure.NemaFigure;
 
 public class MyButtonListener implements ActionListener
 {
@@ -25,31 +26,61 @@ public class MyButtonListener implements ActionListener
 		Figura tren;
 		
 		if (gui.isPrviPutKliknuto() == false)
-		{
-			b.setBackground(Color.orange);
-			gui.setPrviPutKliknuto(true);
-			gui.setAktivnoDugme(b);
-			
+		{			
 			tren = engine.getTablaIJ(b.getI(), b.getJ());
-			gui.setMogucaPolja(tren);
+			
+			if (tren instanceof NemaFigure)
+				JOptionPane.showMessageDialog(null,	"Morate kliknuti na figuru!");
+			else
+			{
+				if (engine.getNaPotezu() == tren.getBoja())
+				{		
+					try
+					{
+						gui.setMogucaPolja(tren);
+						
+						b.setBackground(Color.orange);
+						gui.setPrviPutKliknuto(true);
+						gui.setAktivnoDugme(b);
+					}
+					catch (Exception e1)
+					{
+						JOptionPane.showMessageDialog(null, e1.getMessage());
+					}
+				}
+				else
+					JOptionPane.showMessageDialog(null,	"Na potezu je: " + engine.getNaPotezu().toString() + " igrac!");
+			}
+			
 		}
 		else
 		{
 			Figura trenFigura = engine.getTablaIJ(gui.getAktivnoDugme().getI(), gui.getAktivnoDugme().getJ());
 			
-			try 
+			if (b == gui.getAktivnoDugme())
 			{
-				trenFigura.pomeriFiguru(b.getI(), b.getJ());
-			} 
-			catch (Exception e1) 
-			{
-				JOptionPane.showMessageDialog(null, e1.getMessage());
+				gui.setPrviPutKliknuto(false);
+				gui.setAktivnoDugme(null);
+				gui.refreshGui();
 			}
-			
-			gui.setPrviPutKliknuto(false);
-			gui.setAktivnoDugme(null);
-			
-			gui.refreshGui();			
+			else
+			{
+				try 
+				{
+					trenFigura.pomeriFiguru(b.getI(), b.getJ());
+					
+					gui.setPrviPutKliknuto(false);
+					gui.setAktivnoDugme(null);
+					engine.setNaPotezu();
+					
+					gui.refreshGui();	
+				} 
+				catch (Exception e1) 
+				{
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+				}
+			}
+					
 		}
 	}
 

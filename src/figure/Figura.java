@@ -20,7 +20,25 @@ public abstract class Figura
 		this.engine = engine;
 	}
 	
-	public abstract void pomeriFiguru(int x, int y) throws Exception;
+	public void pomeriFiguru(int x, int y) throws Exception
+	{
+		int i = getI(), j = getJ();
+		Figura novaFigura = new NemaFigure(i, j, engine);
+		Figura[] dozvoljenaPolja = getDozvoljenaPolja();
+		
+		for (int p = 0; p < dozvoljenaPolja.length && dozvoljenaPolja[p] != null; p++)
+			if (dozvoljenaPolja[p].getI() == x && dozvoljenaPolja[p].getJ() == y)
+			{
+				this.setI(x);
+				this.setJ(y);
+				engine.setTablaIJ(this);
+				engine.setTablaIJ(novaFigura);
+				return;
+			}
+
+		throw new Exception("Ne mozes tu da stanes!");
+	}
+	
 	public abstract Figura[] getDozvoljenaPolja();
 
 	public int getI()

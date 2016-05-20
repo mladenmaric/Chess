@@ -8,26 +8,6 @@ public class Pesak extends Figura
 		super(i, j, Figurica.PESAK, boja, engine);
 	}
 
-	public void pomeriFiguru(int x, int y) throws Exception
-	{	
-		int i = getI(), j = getJ();
-		Figura novaFigura = new NemaFigure(i, j, engine);
-		Figura[] dozvoljenaPolja = getDozvoljenaPolja();
-		
-		for (int p = 0; p < dozvoljenaPolja.length && dozvoljenaPolja[p] != null; p++)
-			if (dozvoljenaPolja[p].getI() == x && dozvoljenaPolja[p].getJ() == y)
-			{
-				this.setI(x);
-				this.setJ(y);
-				engine.setTablaIJ(this);
-				engine.setTablaIJ(novaFigura);
-				return;
-			}
-
-		throw new Exception("Ne mozes tu da stanes!");
-
-	}
-
 	public Figura[] getDozvoljenaPolja()
 	{
 		Figura[] dozvoljenaPolja = new Figura[4];
@@ -60,11 +40,11 @@ public class Pesak extends Figura
 			}
 			
 			if (i < 7 && j > 0 && !(engine.getTablaIJ(i + 1, j - 1) instanceof NemaFigure && engine.getTablaIJ(i + 1, j - 1) instanceof Kralj) 
-					&& engine.getTablaIJ(i + 1, j - 1).getBoja() == Igrac.CRNI)
+					&& engine.getTablaIJ(i + 1, j - 1).getBoja() == Igrac.BELI)
 				dozvoljenaPolja[popunjeno++] = engine.getTablaIJ(i + 1, j - 1);
 			
 			if (i < 7 && j < 7 && !(engine.getTablaIJ(i + 1, j + 1) instanceof NemaFigure && engine.getTablaIJ(i + 1, j + 1) instanceof Kralj) 
-					&& engine.getTablaIJ(i + 1, j + 1).getBoja() == Igrac.CRNI)
+					&& engine.getTablaIJ(i + 1, j + 1).getBoja() == Igrac.BELI)
 				dozvoljenaPolja[popunjeno++] = engine.getTablaIJ(i + 1, j + 1);
 		}
 		

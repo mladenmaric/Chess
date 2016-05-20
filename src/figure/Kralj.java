@@ -9,12 +9,6 @@ public class Kralj extends Figura
 		super(i, j, Figurica.KRALJ, boja, engine);
 	}
 
-	public void pomeriFiguru(int x, int y) throws Exception
-	{
-
-	}
-
-	@Override
 	public Figura[] getDozvoljenaPolja()
 	{
 		// TODO Auto-generated method stub

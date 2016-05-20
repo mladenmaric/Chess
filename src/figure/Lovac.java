@@ -9,15 +9,81 @@ public class Lovac extends Figura
 		super(i, j, Figurica.LOVAC, boja, engine);
 	}
 
-	public void pomeriFiguru(int x, int y) throws Exception
-	{
-		
-	}
-
 	public Figura[] getDozvoljenaPolja()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		Figura[] dozvoljenaPolja = new Figura[13];
+		int popunjeno = 0;
+		int i, j;
+		
+		i = getI();
+		j = getJ();
+		while (i > 0 && j > 0)
+		{
+			i--;
+			j--;
+			if (engine.getTablaIJ(i, j) instanceof NemaFigure)
+				dozvoljenaPolja[popunjeno++] = engine.getTablaIJ(i, j);
+			else
+			{
+				if (engine.getTablaIJ(i, j).getBoja() != this.getBoja())
+					dozvoljenaPolja[popunjeno++] = engine.getTablaIJ(i, j);
+					
+				break;
+			}	
+		}
+		
+		i = getI();
+		j = getJ();
+		while (i > 0 && j < 7)
+		{
+			i--;
+			j++;
+			if (engine.getTablaIJ(i, j) instanceof NemaFigure)
+				dozvoljenaPolja[popunjeno++] = engine.getTablaIJ(i, j);
+			else
+			{
+				if (engine.getTablaIJ(i, j).getBoja() != this.getBoja())
+					dozvoljenaPolja[popunjeno++] = engine.getTablaIJ(i, j);
+					
+				break;
+			}	
+		}
+		
+		i = getI();
+		j = getJ();
+		while (i < 7 && j > 0)
+		{
+			i++;
+			j--;
+			if (engine.getTablaIJ(i, j) instanceof NemaFigure)
+				dozvoljenaPolja[popunjeno++] = engine.getTablaIJ(i, j);
+			else
+			{
+				if (engine.getTablaIJ(i, j).getBoja() != this.getBoja())
+					dozvoljenaPolja[popunjeno++] = engine.getTablaIJ(i, j);
+					
+				break;
+			}	
+		}
+		
+		i = getI();
+		j = getJ();
+		while (i < 7 && j < 7)
+		{
+			i++;
+			j++;
+			if (engine.getTablaIJ(i, j) instanceof NemaFigure)
+				dozvoljenaPolja[popunjeno++] = engine.getTablaIJ(i, j);
+			else
+			{
+				if (engine.getTablaIJ(i, j).getBoja() != this.getBoja())
+					dozvoljenaPolja[popunjeno++] = engine.getTablaIJ(i, j);
+					
+				break;
+			}	
+		}		
+		
+		return dozvoljenaPolja;
 	}
 
 }

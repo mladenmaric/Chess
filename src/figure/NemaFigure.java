@@ -8,9 +8,11 @@ public class NemaFigure extends Figura
 	{
 		super(i, j, Figurica.NEPOZNATO, Igrac.NEPOZNATO, engine);
 	}
-	
-	public void pomeriFiguru(int x, int y) {}
 
-	public Figura[] getDozvoljenaPolja() { return null;	}
+	public Figura[] getDozvoljenaPolja() 
+	{ 
+		Figura[] f = new Figura[1];
+		return f;	
+	}
 
 }

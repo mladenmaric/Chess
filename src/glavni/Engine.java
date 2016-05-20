@@ -28,7 +28,7 @@ public class Engine
 	{
 		setBrojOdigranihPotezaBeli(0);
 		setBrojOdigranihPotezaBeli(0);
-		setNaPotezu(Igrac.BELI);
+		naPotezu = Igrac.BELI;
 		
 		tabla = new Figura[8][8];
 		pojedeniBeli = new Figura[8];
@@ -92,9 +92,9 @@ public class Engine
 		return naPotezu;
 	}
 
-	public void setNaPotezu(Igrac naPotezu)
+	public void setNaPotezu()
 	{
-		this.naPotezu = naPotezu;
+		naPotezu = ((naPotezu == Igrac.BELI) ? Igrac.CRNI : Igrac.BELI);
 	}
 	
 	public Figura getTablaIJ(int i, int j)

@@ -102,9 +102,12 @@ public class Gui extends JFrame
 		this.aktivnoDugme = aktivnoDugme;
 	}
 	
-	public void setMogucaPolja(Figura f)
+	public void setMogucaPolja(Figura f) throws Exception
 	{
 		Figura[] tren = f.getDozvoljenaPolja();
+		
+		if (tren[0] == null) 
+			throw new Exception("Ne mozete pomeriti tog igraca!");
 		
 		for (int i = 0; i < tren.length && tren[i] != null; i++)
 			polja[tren[i].getI()][tren[i].getJ()].setBackground(Color.CYAN);
